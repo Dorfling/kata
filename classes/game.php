@@ -1,6 +1,7 @@
 <?php
 
 namespace Umpire;
+
 use Umpire\Player;
 
 class Game
@@ -106,39 +107,58 @@ class Game
     /**
      * @return bool
      */
-    public function isDeuce(){
+    public function isDeuce()
+    {
         return ($this->getPlayer1()->getScore() === $this->getPlayer2()->getScore());
     }
 
     /**
      * @return bool|Player
      */
-    public function getPlayerInLead() {
+    public function getPlayerInLead()
+    {
         if ($this->isDeuce()) {
             return false;
         }
         return ($this->getPlayer1()->getScore() > $this->getPlayer2()->getScore() ? $this->getPlayer1() : $this->getPlayer2());
     }
 
-    public function gameIsLeadByTwoOrMore(){
+    /**
+     * @return bool
+     */
+    public function gameIsLeadByTwoOrMore()
+    {
         return abs($this->player1->getScore() - $this->player2->getScore()) >= 2;
     }
 
     /**
      * @return bool
      */
-    public function someoneCanWin() {
+    public function someoneCanWin()
+    {
         if ($this->getPlayerInLead() && $this->gameIsLeadByTwoOrMore()) {
             return true;
         }
         return false;
     }
 
-    public function hasChickenDinner(){
+    /**
+     * @return bool
+     */
+    public function hasChickenDinner()
+    {
         if ($this->someoneCanWin()) {
             return true;
         }
         return false;
+    }
+
+    /**
+     *
+     */
+    public function getSpokenScore()
+    {
+        
     }
 
     /**
@@ -151,13 +171,13 @@ class Game
         if ($this->hasChickenDinner()) {
             return 'Win for ' . $this->getPlayerInLead()->getName();
         }
-        if ($this->inAdvantage()) {
+        if ($this->getPlayerInLead()) {
             return 'Advantage ' . $this->getPlayerInLead()->getName();
         }
         if ($this->isDeuce()) {
             return 'Deuce';
         }
-        return $this->generalScore();
+        return $this->getSpokenScore();
     }
 
 
