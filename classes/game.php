@@ -158,7 +158,8 @@ class Game
      */
     public function getSpokenScore()
     {
-        
+        $score = $this->pointsLookup[$this->player1->points] . '-';
+        return $score .= $this->isTied() ? 'All' : $this->pointsLookup[$this->player2->points];
     }
 
     /**
