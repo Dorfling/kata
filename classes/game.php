@@ -1,7 +1,7 @@
 <?php
 
 namespace Umpire;
-use Player;
+use Umpire\Player;
 
 class Game
 {
@@ -45,7 +45,7 @@ class Game
     }
 
     /**
-     * @return \player
+     * @return Player
      */
     public function getPlayer1()
     {
@@ -53,7 +53,7 @@ class Game
     }
 
     /**
-     * @param \player $player1
+     * @param Player $player1
      */
     public function setPlayer1($player1)
     {
@@ -61,7 +61,7 @@ class Game
     }
 
     /**
-     * @return \player
+     * @return Player
      */
     public function getPlayer2()
     {
@@ -69,7 +69,7 @@ class Game
     }
 
     /**
-     * @param \player $player2
+     * @param Player $player2
      */
     public function setPlayer2($player2)
     {
@@ -111,7 +111,7 @@ class Game
     }
 
     /**
-     * @return bool|\player
+     * @return bool|Player
      */
     public function getPlayerInLead() {
         if ($this->isDeuce()) {
