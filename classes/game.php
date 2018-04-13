@@ -1,7 +1,7 @@
 <?php
 
-use player;
-
+namespace Umpire;
+use Player;
 
 class Game
 {

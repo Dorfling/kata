@@ -1,7 +1,8 @@
 <?php
 
+namespace Umpire;
 
-class player
+class Player
 {
     /**
      * @var string
@@ -12,6 +13,18 @@ class player
      * @var int
      */
     private $score;
+
+    /**
+     * Create a new Player.
+     *
+     * @param $name
+     * @param $points
+     */
+    public function __construct($name, $points)
+    {
+        $this->points = $points;
+        $this->name = $name;
+    }
 
     /**
      * @return mixed
