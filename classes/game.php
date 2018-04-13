@@ -104,22 +104,34 @@ class Game
     }
 
     /**
-     *
+     * @return bool
      */
     public function isDeuce(){
         return ($this->getPlayer1()->getScore() === $this->getPlayer2()->getScore());
     }
 
     /**
-     * @return bool
+     * @return bool|\player
      */
-    public function someoneCanWin() {
+    public function getPlayerInLead() {
         if ($this->isDeuce()) {
             return false;
         }
-        if ($this->getPlayerInLead) {
+        return ($this->getPlayer1()->getScore() > $this->getPlayer2()->getScore() ? $this->getPlayer1() : $this->getPlayer2());
+    }
 
+    public function gameIsLeadByTwoOrMore(){
+        return abs($this->player1->getScore() - $this->player2->getScore()) >= 2;
+    }
+
+    /**
+     * @return bool
+     */
+    public function someoneCanWin() {
+        if ($this->getPlayerInLead() && $this->gameIsLeadByTwoOrMore()) {
+            return true;
         }
+        return false;
     }
 
     public function hasChickenDinner(){
