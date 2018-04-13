@@ -1,4 +1,3 @@
-
 <?php
 
 use player;
@@ -11,13 +10,13 @@ class Game
      *
      * @var Player
      */
-    private $player1;
+    private $player1 = 0;
     /**
      * Player two for the game.
      *
      * @var Player
      */
-    private $player2;
+    private $player2 = 0;
     /**
      * Points to score lookup table.
      *
@@ -29,6 +28,9 @@ class Game
         2 => 'Thirty',
         3 => 'Forty'
     ];
+
+    private $score = null;
+
 
     /**
      * Create a new Tennis instance.
@@ -90,5 +92,68 @@ class Game
         $this->pointsLookup = $pointsLookup;
     }
 
-    
+    /**
+     * @return bool
+     */
+    public function isTied()
+    {
+        if ($this->getPlayer1()->getScore() === $this->getPlayer2()->getScore()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     *
+     */
+    public function isDeuce(){
+        return ($this->getPlayer1()->getScore() === $this->getPlayer2()->getScore());
+    }
+
+    /**
+     * @return bool
+     */
+    public function someoneCanWin() {
+        if ($this->isDeuce()) {
+            return false;
+        }
+        if ($this->getPlayerInLead) {
+
+        }
+    }
+
+    public function hasChickenDinner(){
+        if ($this->someoneCanWin()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Calculate the current tennis score.
+     *
+     * @return string
+     */
+    public function currentGameState()
+    {
+        if ($this->hasChickenDinner()) {
+            return 'Win for ' . $this->leader()->name;
+        }
+        if ($this->inAdvantage()) {
+            return 'Advantage ' . $this->leader()->name;
+        }
+        if ($this->inDeuce()) {
+            return 'Deuce';
+        }
+        return $this->generalScore();
+    }
+
+
+    public function getScore()
+    {
+        $player1Score = $this->getPlayer1()->getScore();
+        $player2Score = $this->getPlayer2()->getScore();
+
+    }
+
 }
