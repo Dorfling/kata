@@ -3,7 +3,7 @@
 use Umpire\Game;
 use Umpire\player;
 
-class TennisScoringTest extends PHPUnit_Framework_TestCase
+class unitTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Player
@@ -31,5 +31,12 @@ class TennisScoringTest extends PHPUnit_Framework_TestCase
     public function testTieScoreAtZero()
     {
         $this->assertEquals('Love-All', $this->game->getScore());
+    }
+
+    public function testScoreOneZeroGameReturnsFifteenLove()
+    {
+        $this->player1->setScore(1);
+
+        $this->assertEquals('Fifteen-Love', $this->game->getScore());
     }
 }
