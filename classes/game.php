@@ -149,12 +149,12 @@ class Game
     public function currentGameState()
     {
         if ($this->hasChickenDinner()) {
-            return 'Win for ' . $this->leader()->name;
+            return 'Win for ' . $this->getPlayerInLead()->getName();
         }
         if ($this->inAdvantage()) {
-            return 'Advantage ' . $this->leader()->name;
+            return 'Advantage ' . $this->getPlayerInLead()->getName();
         }
-        if ($this->inDeuce()) {
+        if ($this->isDeuce()) {
             return 'Deuce';
         }
         return $this->generalScore();
